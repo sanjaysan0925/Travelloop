@@ -1,9 +1,24 @@
-node_modules/
-.env
-.env.local
-dist/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-GUIDE_SANTHOSH_Frontend_AI.md
-TRAVELOOP_MASTER.md
-AGENT.md
-FRONTEND-DESIGN-SKILL.md
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
