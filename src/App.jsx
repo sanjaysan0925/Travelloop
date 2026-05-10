@@ -10,6 +10,8 @@ import PublicTrip from './pages/PublicTrip';
 import Budget from './pages/Budget';
 import Packing from './pages/Packing';
 import Notes from './pages/Notes';
+import Explore from './pages/Explore';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -33,19 +35,8 @@ function App() {
           <Route path="trip/:tripId/packing"     element={<Packing />} />
           <Route path="trip/:tripId/notes"       element={<Notes />} />
 
-          <Route path="explore" element={
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'50vh', textAlign:'center' }}>
-              <p style={{ fontFamily:'"Playfair Display",serif', fontSize:'clamp(2.5rem,6vw,4rem)', fontWeight:700, fontStyle:'italic', color:'#fff' }}>Explore</p>
-              <p style={{ color:'#444', marginTop:12, fontSize:14 }}>Destination discovery engine — coming soon.</p>
-            </div>
-          } />
-
-          <Route path="profile" element={
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'50vh', textAlign:'center' }}>
-              <p style={{ fontFamily:'"Playfair Display",serif', fontSize:'clamp(2.5rem,6vw,4rem)', fontWeight:700, fontStyle:'italic', color:'#fff' }}>Profile</p>
-              <p style={{ color:'#444', marginTop:12, fontSize:14 }}>Your travel identity — coming soon.</p>
-            </div>
-          } />
+          <Route path="explore" element={<Explore />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

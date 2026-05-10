@@ -339,6 +339,24 @@ export default function Dashboard() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
     >
+      {/* ── Top Navbar ── */}
+      <nav className="fixed top-0 left-0 w-full z-[100] px-8 py-6 flex justify-between items-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <Link to="/" className="text-xl font-display font-bold text-white tracking-tighter">
+            TRAVELOOP<span style={{ color: 'var(--sig)' }}>.</span>
+          </Link>
+        </div>
+        <div className="flex gap-6 items-center pointer-events-auto">
+          <Link to="/explore" className="text-xs font-semibold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Explore</Link>
+          <Link to="/trips" className="text-xs font-semibold uppercase tracking-widest text-white/50 hover:text-white transition-colors">My Trips</Link>
+          <Link 
+            to="/auth" 
+            className="px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 bg-sig text-black hover:scale-105 shadow-sig-glow"
+          >
+            Sign In
+          </Link>
+        </div>
+      </nav>
       {SECTIONS.map(s => (
         <div key={s.id} id={`section-${s.id}`}>
           <FullSection s={s} onVisible={setActiveSection} />

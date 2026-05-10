@@ -89,11 +89,21 @@ export default function ItineraryBuilder() {
   const HINTS = ['What should I eat?', 'Best time to visit?', 'Day-by-day plan?', 'Rough budget estimate?'];
 
   return (
-    <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} style={{ height:'calc(100vh - 64px)', display:'flex', overflow:'hidden' }}>
+    <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} style={{ height:'calc(100vh - 64px)', display:'flex', overflow:'hidden', position: 'relative' }}>
+      {/* ── Background Image ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img 
+          src={trip.cover_url || 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80'} 
+          className="w-full h-full object-cover opacity-60"
+          alt=""
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
+      </div>
 
       {/* LEFT */}
-      <div style={{ width:360, flexShrink:0, borderRight:'1px solid #111', display:'flex', flexDirection:'column', overflow:'hidden' }}>
-        <div style={{ padding:'20px 16px 14px', borderBottom:'1px solid #111', background:'var(--bg-base)', flexShrink:0 }}>
+      <div style={{ width:380, flexShrink:0, borderRight:'1px solid rgba(255,255,255,0.05)', display:'flex', flexDirection:'column', overflow:'hidden', background:'rgba(10,10,10,0.85)', backdropFilter:'blur(20px)', zIndex: 10 }}>
+        <div style={{ padding:'24px 20px 16px', borderBottom:'1px solid rgba(255,255,255,0.05)', flexShrink:0 }}>
           <Link to="/trips" style={{ fontSize:11, color:'#444', textDecoration:'none', letterSpacing:'0.2em', textTransform:'uppercase' }}>← My Trips</Link>
           <h1 style={{ fontFamily:'"Playfair Display",serif', fontWeight:700, fontStyle:'italic', fontSize:20, color:'#fff', margin:'8px 0 4px' }}>{trip.mood_emoji||'✈️'} {trip.name}</h1>
           <div style={{ display:'flex', gap:6, marginTop:10, flexWrap:'wrap' }}>

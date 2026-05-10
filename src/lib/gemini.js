@@ -1,7 +1,7 @@
 // src/lib/gemini.js
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-// Using gemini-1.5-flash for better compatibility/performance as per Odoo hackathon specs
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+// Using gemini-1.5-flash which is stable on v1
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 export async function askGemini(systemPrompt, userMessage) {
   if (!GEMINI_API_KEY) {

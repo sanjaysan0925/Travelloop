@@ -3,7 +3,6 @@ node_modules/
 .env.local
 dist/
 .DS_Store
-GUIDE_SANTHOSH_Frontend_AI.md
-TRAVELOOP_MASTER.md
-AGENT.md
-FRONTEND-DESIGN-SKILL.md
+*.md
+scratch/
+traveloop\ test/
