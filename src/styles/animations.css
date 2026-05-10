@@ -1,0 +1,111 @@
+/* ===========================
+   TRAVELOOP — ANIMATION SYSTEM
+   Midnight Explorer Aesthetic
+   =========================== */
+
+/* --- Entrance --- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slide-up {
+  from { transform: translateY(1.5rem); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+@keyframes clip-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0);   }
+}
+
+/* --- Ambient / Continuous --- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(1deg); }
+  66%       { transform: translateY(-6px) rotate(-1deg); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.08); }
+}
+@keyframes slow-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --- Micro-interactions --- */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes press {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(0.95); }
+}
+
+/* --- Utility Classes --- */
+.animate-fade-in       { animation: fade-in 0.5s var(--ease-out) forwards; }
+.animate-slide-up      { animation: slide-up 0.6s var(--ease-out) forwards; }
+.animate-clip-reveal   { animation: clip-reveal 0.8s var(--ease-out) forwards; }
+.animate-marquee       { animation: marquee 35s linear infinite; }
+.animate-float         { animation: float 8s ease-in-out infinite; }
+.animate-glow-pulse    { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-spin-slow     { animation: spin-slow 20s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(242,166,35,0.12) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* --- Glass surface --- */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Amber glow card hover --- */
+.card-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: var(--glow-md);
+  border-color: rgba(242, 166, 35, 0.35);
+  transform: translateY(-2px);
+}
+
+/* --- Custom scrollbar --- */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg-base); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sig-dim); }
+
+/* --- Prose override for dark AI chat --- */
+.prose-invert p, .prose-invert li {
+  color: var(--text-secondary);
+}
+.prose-invert strong {
+  color: var(--text-primary);
+}
+.prose-invert h1, .prose-invert h2, .prose-invert h3 {
+  color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
+}
+.prose-invert a {
+  color: var(--sig);
+}
+.prose-invert code {
+  background: var(--bg-elevated);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+  color: var(--sig);
+}

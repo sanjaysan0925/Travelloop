@@ -17,8 +17,14 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+<<<<<<< HEAD
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+=======
+*.md
+scratch/
+traveloop\ test/
+>>>>>>> 91b39e0c8ca6400c21a979ad2019d560f87855f8

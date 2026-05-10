@@ -3,15 +3,113 @@
 @tailwind utilities;
 
 :root {
-  /* Google Fonts (Syne + DM Sans) - we will import them in main.jsx */
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  /* ── Backgrounds: pure onyx black ── */
+  --bg-base:     hsl(0, 0%, 4%);
+  --bg-surface:  hsl(0, 0%, 7%);
+  --bg-elevated: hsl(0, 0%, 12%);
+
+  /* ── Signature: deep ember orange ── */
+  --sig:      hsl(22, 92%, 52%);
+  --sig-dim:  hsl(22, 70%, 34%);
+  --sig-glow: hsla(22, 92%, 52%, 0.22);
+  --sig-rgb:  240, 109, 28;
+
+  /* ── Glow system ── */
+  --glow-xs: 0 0 14px hsla(22,92%,52%,0.12);
+  --glow-sm: 0 0 24px hsla(22,92%,52%,0.2),  0 4px 24px rgba(0,0,0,0.5);
+  --glow-md: 0 0 40px hsla(22,92%,52%,0.28), 0 8px 48px rgba(0,0,0,0.6);
+  --glow-lg: 0 0 70px hsla(22,92%,52%,0.35), 0 20px 80px rgba(0,0,0,0.7);
+
+  /* ── Text ── */
+  --text-primary:   hsl(30, 10%, 93%);
+  --text-secondary: hsl(20, 8%, 55%);
+  --text-muted:     hsl(20, 6%, 35%);
+
+  /* ── Borders ── */
+  --border:        hsl(0, 0%, 14%);
+  --border-active: hsl(22, 92%, 52%);
+
+  /* ── Functional ── */
+  --success: hsl(145, 60%, 44%);
+  --danger:  hsl(4, 75%, 55%);
+  --nav-h:   72px;
+
+  /* ── Easing ── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-body {
-  font-family: var(--font-body);
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    @apply bg-[var(--bg-base)] text-[var(--text-primary)] font-body antialiased;
+  }
+  /* Subtle photographic grain */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  ::selection { background: hsla(22,92%,52%,0.28); color: hsl(22,80%,85%); }
+  h1,h2,h3,h4,h5,h6 { @apply font-display; }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sig-dim); }
+
+/* ── Marquee ── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee 38s linear infinite; }
+
+/* ── Glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.12); }
 }
+.animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+
+/* ── Ken Burns zoom ── */
+@keyframes ken-burns {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+.animate-ken-burns { animation: ken-burns 8s var(--ease-out) forwards; }
+
+/* ── Scroll-snap helpers ── */
+.snap-y-mandatory { scroll-snap-type: y mandatory; }
+.snap-start       { scroll-snap-align: start; }
+
+/* ── Glass surface ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glass-dark {
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── Orange glow card ── */
+.card-glow {
+  transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s var(--ease-out);
+}
+.card-glow:hover {
+  box-shadow: var(--glow-md);
+  border-color: hsla(22,92%,52%,0.4);
+  transform: translateY(-3px);
+}
+
+/* ── Prose (AI) ── */
+.prose-invert p, .prose-invert li { color: var(--text-secondary); }
+.prose-invert strong              { color: var(--text-primary); }
+.prose-invert h1,.prose-invert h2,.prose-invert h3 { color: var(--text-primary); font-family: 'Syne', sans-serif; }
+.prose-invert a    { color: var(--sig); }
+.prose-invert code { background: var(--bg-elevated); border-radius: 4px; padding: 0.1em 0.4em; font-size: 0.85em; color: var(--sig); }
